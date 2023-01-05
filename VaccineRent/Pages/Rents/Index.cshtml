@@ -1,0 +1,58 @@
+﻿@page
+@model VaccineRent.Pages.Rents.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>預約列表</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent[0].Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent[0].ResDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent[0].Hospital_Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Rent) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hospital_Name)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

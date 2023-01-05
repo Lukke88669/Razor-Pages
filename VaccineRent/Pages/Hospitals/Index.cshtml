@@ -1,0 +1,77 @@
+﻿@page
+@model VaccineRent.Pages.Hospitals.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>醫院列表</h1>
+
+<p>
+    <a asp-page="Create">新增</a>
+</p>
+<form>
+    <p>
+        <select asp-for="HospitalCountry" asp-items="Model.Country">
+            <option value="">All</option>
+        </select>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Hospital[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hospital[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hospital[0].Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hospital[0].HaveModerna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hospital[0].HaveAZ)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hospital[0].HaveBNT)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Hospital) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)               
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HaveModerna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HaveAZ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HaveBNT)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
